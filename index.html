@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestión de Marketing · 1er Parcial — Mis apuntes (solo lo del parcial)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23143a5e%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27Georgia,serif%27 font-size=%2730%27 font-weight=%27700%27 fill=%27%23f3f1ea%27 text-anchor=%27middle%27%3EGM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3f1ea;--paper-2:#ebe7dc;--ink:#1b2129;--ink-soft:#4b535c;--line:#cbc4b2;
+    --u1:#1b4d8c;--u2:#8c3b1b;--u3:#2f6b3a;--u4:#6b3a7a;--brand:#143a5e;--gold:#c9a44a;--red:#a04a2b;
+    --ok:#1f5a3c;--ok-soft:#dfe8e2;--no:#a04a2b;--no-soft:#f3dcd6;
+    --seguro:#7a5a0e;--seguro-soft:#faf1d9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:"Atkinson Hyperlegible","Segoe UI",Verdana,sans-serif;font-size:17px;line-height:1.58;-webkit-font-smoothing:antialiased;position:relative}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;opacity:.6}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(243,241,234,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:12px 28px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .nav-brand{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-right:auto;font-weight:700}
+  .chip{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;text-decoration:none;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:5px 12px;transition:all .18s ease;background:transparent}
+  .chip:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+
+  header.hero{padding:80px 0 50px;border-bottom:3px solid var(--ink)}
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brand);font-weight:700}
+  h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(44px,8vw,104px);line-height:.92;letter-spacing:-.02em;margin:14px 0 0}
+  h1 em{font-style:italic;font-weight:500;color:var(--brand)}
+  .hero-meta{display:flex;gap:36px;flex-wrap:wrap;margin-top:34px;font-family:"JetBrains Mono",monospace;font-size:13px}
+  .hero-meta b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin-bottom:4px}
+  .hero-meta span{font-size:20px;font-family:"Fraunces",serif;font-weight:600;color:var(--ink)}
+  .hero-lead{max-width:760px;margin-top:30px;font-size:20px;color:var(--ink-soft);line-height:1.5}
+  .hero-lead b{color:var(--ink);font-weight:700}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .lvl{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 10px;border:1.5px solid}
+  .lvl.s{color:var(--seguro);border-color:var(--seguro);background:var(--seguro-soft)}
+  .lvl.m{color:var(--u1);border-color:var(--u1);background:#e6edf8}
+  .lvl.p{color:var(--ink-soft);border-color:var(--ink-soft);background:#fff}
+
+  section.unit{padding:60px 0;border-bottom:1px solid var(--line)}
+  .unit-head{display:flex;align-items:baseline;gap:20px;margin-bottom:14px}
+  .unit-num{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(60px,11vw,130px);line-height:.8;color:var(--accent);opacity:.9;letter-spacing:-.04em}
+  .unit-titles .u-kicker{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .unit-titles h2{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(28px,4.5vw,48px);line-height:1.02;letter-spacing:-.01em;margin-top:6px}
+  .unit-weight{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:999px;padding:4px 11px;display:inline-block;margin-bottom:26px}
+
+  .card{background:var(--paper-2);border:1.5px solid var(--line);border-radius:14px;padding:24px 28px;margin-bottom:18px;position:relative;overflow:hidden}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
+  .h-main{font-family:"Fraunces",serif;font-weight:600;font-size:23px;margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .h-main .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
+  .h-main .tag{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:3px 9px}
+  .h-sub{font-family:"Fraunces",serif;font-weight:600;font-size:18px;color:var(--accent);margin:20px 0 6px;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px}
+  .def{margin-bottom:4px}
+  .def b{font-weight:700}
+  .simple{font-size:15.5px;color:var(--ink-soft);margin:4px 0 6px;padding-left:14px;border-left:3px solid var(--line)}
+  .simple b{font-weight:700;color:var(--ink)}
+  .simple > b:first-child{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .fbox{font-family:"Fraunces",serif;font-weight:600;font-size:20px;text-align:center;background:var(--accent);color:#fff;border-radius:11px;padding:14px 18px;margin:14px 0;line-height:1.35}
+  .fbox small{display:block;font-family:"Atkinson Hyperlegible",sans-serif;font-weight:400;font-size:13px;opacity:.92;margin-top:6px}
+
+  ul{list-style:none;margin-top:6px}
+  ul li{padding:5px 0 5px 24px;position:relative}
+  ul li::before{content:"–";position:absolute;left:4px;color:var(--accent);font-weight:700}
+  ul li b{font-weight:700}
+  ul.sub{margin:2px 0 2px 24px}
+  ul.sub li{font-size:15.5px;color:var(--ink-soft)}
+
+  ol{list-style:none;counter-reset:s;margin-top:6px}
+  ol li{counter-increment:s;padding:5px 0 5px 36px;position:relative}
+  ol li::before{content:counter(s);position:absolute;left:0;top:6px;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:12px;background:var(--accent);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:920px){.grid3{grid-template-columns:1fr 1fr}}
+  @media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr}.unit-head{flex-direction:column;gap:6px}.wrap{padding:0 18px}.nav-inner,.nav-chips{padding-left:18px;padding-right:18px}.fbox{font-size:16px;padding:12px 10px}.card{padding:20px 18px}.fgrid{grid-template-columns:1fr}.tbl-scroll table.eco{min-width:560px}}
+
+  .mini{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:16px 18px}
+  .mini b{font-family:"Fraunces",serif;font-weight:600;color:var(--accent)}
+  .mini ul{margin-top:4px}
+  .mini ul li{padding:3px 0 3px 20px;font-size:15.5px}
+  .mini.danger{border-color:var(--no);background:var(--no-soft)}
+  .mini.danger b,.mini.danger ul li::before{color:var(--no)}
+  .mini.okk{border-color:var(--ok);background:var(--ok-soft)}
+  .mini.okk b,.mini.okk ul li::before{color:var(--ok)}
+  .mini .num{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.1em;display:block;margin-bottom:2px}
+  .mini .hint{display:block;margin-top:8px;font-size:14px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:6px}
+  .mini .hint b{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+
+  table.eco{width:100%;border-collapse:collapse;font-size:15px;margin-top:10px}
+  table.eco th{background:var(--accent);color:#fff;padding:8px 10px;text-align:left;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+  table.eco td{padding:7px 10px;border-bottom:1px solid var(--line);background:#fff;vertical-align:top}
+  table.eco tr:nth-child(even) td{background:var(--paper)}
+  table.eco td b{font-weight:700}
+  table.eco td.soft{color:var(--ink-soft);font-size:14px}
+  table.eco td.num{text-align:right;font-family:"JetBrains Mono",monospace;font-size:14px;white-space:nowrap}
+  .tbl-scroll{overflow-x:auto}
+  .mono{font-family:"JetBrains Mono",monospace;font-size:.92em}
+
+  .note{background:#fff;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:12px 16px;font-size:15px;color:var(--ink-soft);margin-top:12px}
+  .note b{color:var(--ink)}
+  .star{background:#fff;border:2px solid var(--gold);border-radius:12px;padding:14px 18px;margin-top:14px}
+  .star .lbl{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8a6a1c;display:block;margin-bottom:5px}
+  .star ul li::before{color:#8a6a1c}
+  .quote{font-family:"Fraunces",serif;font-style:italic;font-weight:500;font-size:16.5px;color:var(--ink-soft);border-left:3px solid var(--gold);padding:6px 14px;margin:10px 0 4px}
+  .quote b{font-style:normal;color:var(--ink)}
+  .chain{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0 6px;font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:700}
+  .chain span{background:#fff;border:1.5px solid var(--accent);color:var(--accent);border-radius:8px;padding:5px 10px}
+  .chain i{font-style:normal;color:var(--ink-soft)}
+  .chain span.soft{border-style:dashed;color:var(--ink-soft)}
+  details.ej{background:#fff;border:1.5px dashed var(--line);border-radius:12px;padding:12px 18px;margin-top:14px}
+  details.ej summary{cursor:pointer;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  details.ej p{margin-top:8px}
+
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px;margin-top:10px}
+  .fcard{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px}
+  .fcard .lbl{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+  .fcard .f{font-family:"Fraunces",serif;font-weight:600;font-size:17px;color:var(--ink);line-height:1.35}
+  .fcard .d{font-size:14.5px;color:var(--ink-soft);margin-top:8px}
+  .fcard .d b{color:var(--ink)}
+  .fcard .pts{float:right;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;color:#fff;background:var(--accent);border-radius:999px;padding:2px 8px}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  footer{padding:60px 0 90px;text-align:center}
+  footer p{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
+
+  .modes{display:flex;gap:4px;background:var(--paper-2);border:1.5px solid var(--line);border-radius:999px;padding:4px;margin-left:auto}
+  .modes button{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);background:transparent;border:0;cursor:pointer;padding:6px 14px;border-radius:999px;transition:.16s}
+  .modes button:hover{color:var(--ink)}
+  .modes button.active{background:var(--ink);color:var(--paper)}
+  .nav-chips{max-width:1100px;margin:0 auto;padding:0 28px 12px;display:flex;gap:8px;flex-wrap:wrap}
+  .hidden{display:none!important}
+  .modeview{padding-bottom:40px}
+
+  .qwrap{max-width:760px;margin:46px auto 0}
+  .qtop{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--ink-soft);letter-spacing:.04em}
+  .qtop b{color:var(--brand)}
+  .qcard{background:var(--paper-2);border:1.5px solid var(--line);border-radius:16px;padding:28px;position:relative;overflow:hidden}
+  .qcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,var(--brand))}
+  .qcard .qgroup{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent,var(--brand));font-weight:700}
+  .qcard .qq{font-family:"Fraunces",serif;font-weight:600;font-size:24px;line-height:1.22;margin:10px 0 22px}
+  .opt{display:block;width:100%;text-align:left;cursor:pointer;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:11px;padding:14px 16px;margin-bottom:10px;font-size:16px;font-family:"Atkinson Hyperlegible",sans-serif;line-height:1.4;transition:.14s}
+  .opt:hover:not(:disabled){border-color:var(--ink)}
+  .opt:disabled{cursor:default}
+  .opt.correct{border-color:var(--ok);background:var(--ok-soft)}
+  .opt.wrong{border-color:var(--no);background:var(--no-soft)}
+  .opt .mk{float:right;font-family:"JetBrains Mono",monospace;font-weight:700;margin-left:10px}
+  .qactions{margin-top:6px;display:flex;justify-content:flex-end;gap:10px}
+  .btn{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;background:var(--ink);color:var(--paper);border:0;padding:11px 20px;border-radius:10px;transition:.15s}
+  .btn:hover{filter:brightness(1.25)}
+  .btn.ghost{background:transparent;color:var(--ink-soft);box-shadow:inset 0 0 0 1.5px var(--line)}
+  .btn.ghost:hover{color:var(--ink)}
+  .fb{font-family:"JetBrains Mono",monospace;font-size:13px;margin:14px 0 2px;min-height:18px}
+  .fb.ok{color:var(--ok)}.fb.no{color:var(--no)}
+  .esc-input{width:100%;min-height:130px;resize:vertical;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;color:var(--ink);font-family:"Atkinson Hyperlegible",sans-serif;font-size:17px;line-height:1.55;padding:14px 16px;margin-bottom:14px}
+  .esc-input:focus{outline:none;border-color:var(--accent,var(--brand))}
+  .esc-input:disabled{opacity:.65}
+  .esc-answer{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+  .esc-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-soft);display:block;margin-bottom:6px;font-weight:700}
+  .esc-yours p{font-size:16px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px;white-space:pre-wrap;margin:0}
+  .esc-ok{border-left:4px solid var(--ok);padding-left:14px;margin-top:16px}
+  .esc-ok .ans{font-size:17px;margin:0}
+  .esc-rate{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .esc-rate .rate{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;cursor:pointer;background:var(--paper-2);border:1.5px solid var(--line);color:var(--ink);padding:8px 14px;border-radius:8px;transition:.14s}
+  .esc-rate .rate:hover{border-color:var(--accent,var(--brand));color:var(--accent,var(--brand))}
+
+  @media(max-width:720px){
+    body::before{display:none}
+    nav{backdrop-filter:none;background:rgba(243,241,234,.97)}
+    .reveal{transition-duration:.35s}
+    .nav-brand{display:none}
+    .nav-inner{padding:8px 14px}
+    .modes{margin:0 auto}
+    .modes button{padding:5px 12px;font-size:11px}
+    .nav-chips{flex-wrap:nowrap;overflow-x:auto;padding:0 14px 8px;gap:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .nav-chips::-webkit-scrollbar{display:none}
+    .chip{flex:none;white-space:nowrap;padding:4px 10px;font-size:11px}
+  }
+
+  @media print{
+    nav{display:none}
+    body::before{display:none}
+    .reveal{opacity:1;transform:none}
+    section.unit{padding:24px 0;break-inside:auto}
+    .card{break-inside:avoid;background:#fff}
+    #view-quiz,#view-escribir{display:none!important}
+  }
+</style>
+<style>
+  /* --- extras para la transcripción del cuaderno --- */
+  .xlink{display:inline-block;margin-top:22px;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand);text-decoration:none;border-bottom:2px solid var(--brand);padding-bottom:2px}
+  .xlink:hover{color:var(--ink);border-color:var(--ink)}
+  .fuera{margin-top:16px;font-size:14.5px;color:var(--ink-soft);background:#fff;border:1px dashed var(--line);border-radius:10px;padding:10px 14px;max-width:760px}
+  .fuera b{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .hoja{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border:1.5px dashed var(--ink-soft);border-radius:999px;padding:3px 10px;margin:4px 0 14px;background:#fff}
+  .margen{font-family:"Fraunces",serif;font-style:italic;color:var(--ink-soft);font-size:15px;background:#fff;border:1px dashed var(--line);border-radius:10px;padding:8px 14px;margin-bottom:14px}
+  .margen b{font-style:normal;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-right:8px}
+  .tachado{text-decoration:line-through;color:var(--ink-soft)}
+  .def .mk,li .mk{font-family:"JetBrains Mono",monospace;font-weight:700;margin-right:6px}
+  .mk.ok{color:var(--ok)}.mk.no{color:var(--no)}
+  .llave{border-left:3px solid var(--accent);margin:8px 0;padding-left:8px}
+  .llave .llave-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin:2px 0 0 24px}
+  .blank{display:inline-block;min-width:80px;border-bottom:1.5px solid var(--ink-soft);vertical-align:baseline;margin:0 4px}
+  .pir{display:flex;gap:22px;align-items:stretch}
+  .pir svg{flex:none;width:120px;height:auto}
+  .pir ol{flex:1;margin-top:0}
+  .org-top{font-family:"Fraunces",serif;font-weight:600;font-size:18px;color:var(--accent);border:1.5px solid var(--accent);border-radius:10px;padding:6px 18px;display:inline-block;margin:6px 0 10px}
+  .org-note{font-family:"Fraunces",serif;font-style:italic;font-size:14px;color:var(--ink-soft);display:block;margin-top:6px}
+  ul.sub2{margin:2px 0 2px 48px}
+  ul.sub2 li{font-size:15px;color:var(--ink-soft)}
+  @media(max-width:720px){.pir{flex-direction:column}.pir svg{width:90px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <span class="nav-brand">Gestión de Marketing · 1er Parcial</span>
+    <div class="modes" id="modes">
+      <button data-mode="resumen" class="active">Resumen</button>
+      <button data-mode="quiz">Quiz</button>
+      <button data-mode="escribir">Escribir</button>
+    </div>
+  </div>
+  <div class="nav-chips" id="navchips">
+    <a class="chip" href="#p1">1 · Mkt político</a><a class="chip" href="#p2">2 · Estrategia política</a><a class="chip" href="#p3">3 · Temperamento / Humor</a><a class="chip" href="#p4">4 · Marais y blancos</a><a class="chip" href="#p5">5 · Comunicacional</a><a class="chip" href="#p6">6 · Place Marketing</a><a class="chip" href="#p7">7 · Place Branding</a><a class="chip" href="#p8">8 · Mkt social · RSE</a><a class="chip" href="#p9">9 · Mkt de salud</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Mis apuntes · 1er Parcial · Solo lo del parcial</p>
+    <h1>Gestión de Marketing<br><em>1er Parcial</em></h1>
+    <p class="hero-lead"><b>Solo lo que entra, con las palabras de mi cuaderno.</b> El recorte sale de sumar dos cosas: los <b>10 ítems que tomó en el parcial TEMA 2</b> de la comisión de la mañana y <b>lo que dijo en clase que entra</b> (tutoría del 15/09 y clase de Unidad 3 del 01/09). Los modos <b>Quiz</b> y <b>Escribir</b> preguntan solo sobre esto.</p>
+    <div class="fuera"><b>Lo único del cuaderno que queda afuera:</b> las «estrategias a seguir» de la estrategia publicitaria (convertir al político en marca · uso del miedo · construir un enemigo · asociación positiva · combinar el significado de las palabras · repetición · autoridad científica · framing en la ficción). No salió en el TEMA 2 ni lo nombró en clase.</div>
+    <div class="hero-meta">
+      <div><b>Formato</b><span>10 ítems × 10</span></div>
+      <div><b>Unidades</b><span>1 · 2 · 3 + salud</span></div>
+      <div><b>Parcial</b><span>Martes 22/09</span></div>
+    </div>
+    <div class="legend">
+      <span class="lvl s">Tomado en el TEMA 2</span>
+      <span class="lvl m">Lo nombró en clase</span>
+      <span class="lvl p">Del temario</span>
+    </div>
+  </header>
+
+  <div id="view-resumen">
+
+  <!-- ===================== 01 · MARKETING POLÍTICO ===================== -->
+  <section class="unit reveal" id="p1" style="--accent:var(--u1)">
+    <div class="unit-head"><div class="unit-num">01</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 1 · Hoja 1</p><h2>Marketing Político</h2></div></div>
+    <span class="unit-weight">Tomado en el TEMA 2 (consigna 3d) · y lo nombró en clase: «definir qué es marketing político»</span>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Mkt Político<span class="tag">Consigna 3d</span></p>
+      <p class="def">Principios de marketing aplicados a la política. Estrategias y tácticas aplicadas a una campaña política y divulgación institucional.</p>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Niveles Estratégicos del Mkt político</p>
+      <ol>
+        <li><b>Estrategia Política:</b> busca decidir la propuesta política que se le dará al electorado, según la info recolectada por el diagnóstico estratégico.</li>
+        <li><b>Estrategia Comunicacional:</b> diseñada la estrategia, se debe elaborar el discurso según el diseño.</li>
+        <li><b>Estrategia Publicitaria:</b> transmitir emocionalmente bien el mensaje y diseñado y elaborado el discurso. Todo atractivamente.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== 02 · ESTRATEGIA POLÍTICA ===================== -->
+  <section class="unit reveal" id="p2" style="--accent:var(--u1)">
+    <div class="unit-head"><div class="unit-num">02</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 1 · Hojas 1–2</p><h2>Estrategia política y sus herramientas</h2></div></div>
+    <span class="unit-weight">Tomado en el TEMA 2 (consigna 5): «enumere las herramientas de la estrategia política, luego explique dos de ellas»</span>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Estrategia política</p>
+      <p class="def">Decisiones tomadas según la ideología.</p>
+      <p class="h-sub">Participantes en las decisiones</p>
+      <p class="def">El candidato, asesores más cercanos y los 4 de primera línea de la fuerza política.</p>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Herramientas técnicas<span class="tag">Consigna 5</span></p>
+      <ul>
+        <li><b>Diagnóstico Estratégico:</b> problemas principales de la sociedad y cómo solucionarlos.</li>
+        <li><b>Mapa político:</b> conjunto de actores (candidatos, electorado, fuerzas políticas, alianzas potenciales y medios de comunicación).</li>
+        <li><b>Red motivacional al voto:</b> motivaciones del elector por las que votaría a un candidato.</li>
+        <li><b>Posicionamiento:</b> forma de posicionar al candidato frente a las elecciones.</li>
+        <li><b>Análisis Internacional:</b> estudiar contexto global, tendencias y modelos extranjeros para optimizar las campañas.</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Mapa Político</p>
+        <p class="def">Escenario socio político y económico. Delimitamos el terreno político según ciertos criterios.</p>
+        <ul>
+          <li>Criterio ideológico</li>
+          <li>Criterio partidario</li>
+          <li>Criterio temático</li>
+          <li>Criterio geográfico</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Red Motivacional al voto</p>
+        <p class="def">Razones por las que el elector elije al candidato A por sobre el candidato B.</p>
+        <p class="h-sub">Identificación de razones</p>
+        <ul>
+          <li>Partidaria</li>
+          <li>De clase</li>
+          <li>Identificación con la idea del cambio</li>
+          <li>Identificación con la idea de continuidad</li>
+          <li>Identificación con el candidato</li>
+          <li>Con la propuesta</li>
+          <li>Con el discurso</li>
+          <li>Con la imagen</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Estrategia de posicionamiento</p>
+        <p class="def">Posicionar al candidato en el espacio electoral que pretende utilizar en el mapa político.</p>
+        <p class="h-sub">Estrategia de posicionamiento exitosa</p>
+        <p class="def">Depende de 2 cosas:</p>
+        <ol>
+          <li>Estar constituida en base a la selección de pocas prioridades o posiciones.</li>
+          <li>Debe permitir una presentación simple y directa.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Análisis Internacional</p>
+        <ul>
+          <li>Monitorización externa del candidato.</li>
+          <li>Interés de las reacciones de los centros de poder por los candidatos.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 · TEMPERAMENTO Y HUMOR ===================== -->
+  <section class="unit reveal" id="p3" style="--accent:var(--u1)">
+    <div class="unit-head"><div class="unit-num">03</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 1 · Hojas 4–5</p><h2>Temperamento y Humor Político</h2></div></div>
+    <span class="unit-weight">Tomado en el TEMA 2 (consigna 1) · y lo nombró en clase: «qué es el humor político»</span>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Temperamento Político<span class="tag">Largo plazo</span></p>
+      <p class="def">Grado de interés por la política <b>(largo plazo)</b>.</p>
+      <ul>
+        <li><b>Actitud positiva o negativa al cambio:</b> volátil en períodos de crisis económica.</li>
+        <li>Actitudes respecto a concepto de izq. o der.</li>
+        <li>Actitud hacia el sistema económico.</li>
+        <li>Actitud hacia el político o armado.</li>
+        <li>Actitud sobre problemas actuales.</li>
+        <li>Opinión personal respecto a la gestión del político respecto a un problema.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Humor Político<span class="tag">Corto plazo</span></p>
+      <p class="def">Cómo percibe o nota la opinión pública la situación del país, grado de optimismo o pesimismo y grado de apoyo o descontento por el gobierno <b>(corto plazo)</b>.</p>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Actitudes de los electores respecto al político</p>
+      <ul>
+        <li><b>A corto plazo:</b> opiniones pasajeras por polémicas del momento.</li>
+        <li><b>A largo plazo:</b> el electorado ya tiene una opinión generada que no puede cambiar.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== 04 · MARAIS Y BLANCOS ===================== -->
+  <section class="unit reveal" id="p4" style="--accent:var(--u1)">
+    <div class="unit-head"><div class="unit-num">04</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 1 · Hojas 5–6</p><h2>El Marais y los blancos del electorado</h2></div></div>
+    <span class="unit-weight">Tomado en el TEMA 2 (consigna 2) · y lo nombró en clase: «qué es el marais»</span>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>El Marais<span class="tag">Consigna 2</span></p>
+      <p class="def">Mantenerse ignorante a las novedades políticas. No solo es una actitud, sino que también es un segmento.</p>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Pasar del estudio a la estrategia</p>
+      <p class="def">A este punto ya debemos tener la información necesaria para poder:</p>
+      <p class="h-sub">Elaborar la estrategia · Pasos a seguir</p>
+      <ol>
+        <li><b>Objetivos buscados y metas:</b> difundir ideas, obtener caudal específico de votos y ganar la elección.</li>
+        <li><b>Elegir los segmentos del electorado:</b> buscamos maximizar recursos escasos.</li>
+      </ol>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Blancos naturales<span class="tag">Consigna 2</span></p>
+        <p class="def">Predisposición natural a la ideología. Núcleo duro.</p>
+        <ul>
+          <li>Alta receptibilidad al mensaje</li>
+          <li>Cumplir con lo prometido</li>
+          <li>Aplicación de recursos a este segmento a inicios de campaña</li>
+          <li>Cuidar el no defraudar a este segmento al dirigirnos a otro</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Líderes de opinión</p>
+        <p class="def">Personas con alta influencia en el voto sin restricción de opinión respecto a lo que dice.</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Electores flotantes o «Marais»</p>
+        <p class="def">Alto grado de influenciabilidad.</p>
+        <ul>
+          <li>Personas que cambian fácilmente de candidato o partido de preferencia</li>
+          <li>Se centran en el humor político</li>
+          <li>Segmento más rentable de abarcar</li>
+          <li>Representa aprox. el <b>20 % del electorado</b> (mayormente jóvenes y viejos)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Electores críticos</p>
+        <p class="def">Votantes muy informados, analíticos y con opiniones políticas.</p>
+        <ul>
+          <li>Indecisos</li>
+          <li>Convencibles con argumentos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Plataforma electoral</p>
+      <p class="def">Documento con los planes y propuestas para la campaña. Sirve de guía para los candidatos que salieron electos y orientar su trabajo hacia el cargo.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 05 · COMUNICACIONAL Y PUBLICITARIA ===================== -->
+  <section class="unit reveal" id="p5" style="--accent:var(--u1)">
+    <div class="unit-head"><div class="unit-num">05</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 1 · Hojas 3–4</p><h2>Estrategia comunicacional y publicitaria</h2></div></div>
+    <span class="unit-weight">Tomado en el TEMA 2 (consigna 6): «¿qué es el planeamiento de medios?»</span>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Estrategia Comunicacional</p>
+      <p class="def">Elaborar el discurso político.</p>
+      <p class="h-sub">Tipos de discurso</p>
+      <ul>
+        <li><b>Refuerzo:</b> destinado al votante que ya es partidario, simpatizante o militante.</li>
+        <li><b>Polémico:</b> descalificar al adversario y confrontarlo directamente.</li>
+        <li><b>Persuasión:</b> persuadir con argumentos.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Planeamiento de medios<span class="tag">Consigna 6</span></p>
+      <p class="def">Medios que se utilizarán para transmitir el mensaje político. Además de la correcta combinación de redes de comunicación.</p>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Opinión Pública</p>
+      <p class="def">Creencias percibidas y compartidas por la comunidad y que es de interés general por todos estos.</p>
+      <p class="h-sub">¿Cómo conocer al electorado?</p>
+      <ol>
+        <li><b>Análisis estadístico:</b> información cuantitativa (barato, simple y directo).</li>
+        <li><b>Opinión pública:</b> información cualitativa.</li>
+      </ol>
+      <p class="h-sub">Opinión pública · Encuestas de opinión pública</p>
+      <ul>
+        <li><b>Cualitativas:</b> busca descubrir <span class="tachado">[palabra tachada]</span> y mecanismos mentales.
+          <ul class="sub">
+            <li>Entrevistas</li>
+            <li><b>Muestras pequeñas:</b> grupos pequeños de personas</li>
+            <li><b>Detectar ideas:</b> se pregunta por opiniones y percepción respecto al candidato</li>
+          </ul>
+        </li>
+        <li><b>Cuantitativo:</b>
+          <ul class="sub">
+            <li><b>Muestra grande:</b> tan grande como para ser representativa de toda la población</li>
+            <li><b>Revela:</b> opiniones y comportamientos similares a los de toda la población</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Estrategia Publicitaria</p>
+      <p class="def">Transmisión emocional y atractiva del mensaje diseñado y elaborado por la estrategia comunicacional.</p>
+      <ul><li>Busca convertir todo lo anterior en imagen.</li></ul>
+      <p class="h-sub">Funciones de la publicidad</p>
+      <ul>
+        <li><b>Función comunicativa:</b> busca transmitir textualmente el mensaje.</li>
+        <li><b>Función narrativa:</b> busca generar emociones en el oyente y en el electorado.</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Posicionamiento</p>
+        <p class="def">Percepciones de la propuesta y de cómo realmente actúa el candidato. El elector atribuye conductas y actitudes al candidato, pueden ser reales o no.</p>
+      </div>
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Segmentación</p>
+        <p class="def">Identificar divisiones de electores con características homogéneas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 06 · PLACE MARKETING ===================== -->
+  <section class="unit reveal" id="p6" style="--accent:var(--u2)">
+    <div class="unit-head"><div class="unit-num">06</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 2 · Hojas 6–8</p><h2>Marketing de Países y Ciudades</h2></div></div>
+    <span class="unit-weight">Tomado en el TEMA 2 (consigna 3a, como «Marketing Territorial») · en nuestra comisión lo llamamos Place Marketing: es el mismo tema</span>
+
+    <div class="fbox">CIUDAD = INSTITUCIÓN</div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Mkt de ciudad</p>
+        <p class="def">Aplicación de las 4P y cómo vender una ciudad.</p>
+      </div>
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Demanda</p>
+        <p class="def">Colectivo al que queremos atraer (instituciones, inversores, colectivos).</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Marketing Place<span class="tag">Consigna 3a</span></p>
+      <p class="def">Tiene como objetivo adaptar la oferta a la demanda a través de estrategias, ejecutando estas considerando la identidad de la ciudad para diferenciarla del resto.</p>
+      <div class="note"><b>Nota de clase:</b> el profesor dio las denominaciones de este tema y cada comisión eligió una. La de la mañana usa <b>Marketing Territorial</b>; la nuestra, <b>Place Marketing</b>. Si en el parcial dice «Marketing Territorial», es esta definición.</div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Comparativa entre gestión de emp. y ciudades</p>
+      <div class="tbl-scroll">
+      <table class="eco">
+        <tr><th>Aspecto</th><th>Empresas</th><th>Ciudad</th></tr>
+        <tr><td><b>Propiedad</b></td><td>Accionistas, empresariado</td><td>Ciudadanos e instituciones</td></tr>
+        <tr><td><b>Alta Dirección</b></td><td>Consejo de Administración</td><td>Ayuntamiento, municipalidad, alcaldía</td></tr>
+        <tr><td><b>Productos</b></td><td>Manufactura o servicio</td><td>Serv. públicos, atractivos diversos</td></tr>
+        <tr><td><b>Clientes</b></td><td>Consumidores</td><td>Ciudadanos, inversores y visitantes</td></tr>
+        <tr><td><b>Competidores y cooperantes</b></td><td>Otras empresas</td><td>Otras ciudades</td></tr>
+      </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Marca país</p>
+      <p class="def">Forma de diferenciarse del país con el resto y representar los valores del mismo y posicionarse con esta marca.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Plan estratégico de Mkt en ciudades <span style="font-weight:400">(Laura Meza Arango)</span></p>
+        <ul>
+          <li>Análisis situacional</li>
+          <li>Fijar objetivos</li>
+          <li><b>Plantear estrategia:</b> segmentación y posicionamiento</li>
+          <li>Marketing operativo</li>
+          <li>Plan de acción</li>
+          <li>Implementación y control</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Plan estratégico de Mkt en ciudades <span style="font-weight:400">(Martínez y Cervante Bianca)</span></p>
+        <ol>
+          <li><b>Desarrollo físico / modelo económico:</b> infraestructura, beneficios tangibles. Desarrollar las actividades estratégicas que generen riqueza.</li>
+          <li><b>Estrategia de competencia y colaboración:</b> robarse los colectivos de otras ciudades y protocolos de colaboración con otras ciudades.</li>
+          <li><b>Fase de Marketing:</b> toda la fase de comunicación.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Redes de ciudades <span class="tag">2da fase</span></p>
+      <p class="def">Para atraer gente con esto y para esto.</p>
+      <p class="h-sub">Competencia</p>
+      <ul>
+        <li>Atraer inversores</li>
+        <li>Instituciones y empresas</li>
+        <li>Eventos deportivos</li>
+        <li>Exposiciones</li>
+        <li>Actividades económicas y culturales</li>
+      </ul>
+      <p class="h-sub">Cooperación</p>
+      <ul>
+        <li><b>Relaciones horizontales:</b> entre ciudades</li>
+        <li><b>Relaciones verticales:</b> con instituciones privadas</li>
+      </ul>
+      <p class="h-sub">Plan estratégico de comunicación</p>
+      <ul>
+        <li>Publicidad</li>
+        <li>Promoción</li>
+        <li>Ferias de turismo o comerciales</li>
+        <li>RRPP</li>
+        <li><b>Famosos:</b> «Embajadores de buena voluntad»</li>
+        <li>Eventos que dan notoriedad internacional</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== 07 · PLACE BRANDING ===================== -->
+  <section class="unit reveal" id="p7" style="--accent:var(--u2)">
+    <div class="unit-head"><div class="unit-num">07</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 2 · Hojas 8–9</p><h2>Place Branding</h2></div></div>
+    <span class="unit-weight">Tomado en el TEMA 2 (consigna 4: definir + enumerar principios, y consigna 7: el caso) · y lo nombró en clase como uno de los dos prácticos</span>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>PLACE BRANDING<span class="tag">Consigna 4</span></p>
+      <p class="def">Estudia cómo posicionar una marca. Administrar todos los elementos vinculados a un símbolo y nombre comercial.</p>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Principios del place branding<span class="tag">Consigna 4 y 7</span></p>
+      <ol>
+        <li><b>Singularidad:</b> qué la diferencia, qué valores tiene y qué promete la marca.</li>
+        <li><b>Autenticidad:</b> la imagen debe ir acorde a su realidad y a sus valores auténticos.</li>
+        <li><b>Memorable:</b> incentivar a vivir o invertir con experiencias que recuerden y lleven en el corazón.</li>
+        <li><b>Cocreación:</b> colaboración constante entre emp. públicas y privadas para hacer realidad la identidad.</li>
+        <li><b>Place Making:</b> comunicación integrada a todos los principios.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Genius Loci</p>
+      <p class="def">Es el cómo una obra se integra al espacio físico del lugar donde se ubica y cómo el branding place se adecua a este.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 08 · MKT SOCIAL Y RSE ===================== -->
+  <section class="unit reveal" id="p8" style="--accent:var(--u3)">
+    <div class="unit-head"><div class="unit-num">08</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 3 · Hojas «Faltante U3»</p><h2>Marketing social y RSE</h2></div></div>
+    <span class="unit-weight">Los conceptos de la unidad que ingresan al parcial · tomados en el TEMA 2 (consignas 3b y 3c) y marcados en la clase del 01/09</span>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Mkt social<span class="tag">Consigna 3b</span></p>
+      <p class="def">Planificación de mkt que promueve un cambio de comportamiento <b>voluntario</b> socialmente favorable a través de un <b>producto social</b>.</p>
+      <div class="note"><b>Versión tachada en el cuaderno:</b> <span class="tachado">Es una planificación de MKT que incentiva un cambio de comportamiento voluntario que genera un beneficio a la sociedad a través de la oferta de un producto social. Debe promover una idea o práctica en uno o más grupos sociales.</span></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Producto social</p>
+        <p class="def">Propuesta de cambio que presenta la empresa que realiza la campaña de Mkt social.</p>
+      </div>
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Partes del producto social</p>
+        <ol>
+          <li><b>Idea:</b> problema a solucionar</li>
+          <li><b>Concepto:</b> llamada a la acción</li>
+          <li><b>Imagen:</b> cómo lo comunicaremos con las 4P</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Mkt socialmente responsable <span style="font-weight:400">(exclusivo para empresas)</span></p>
+      <p class="def">Plan de Mkt que no perjudique al consumidor.</p>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>RSE <span style="font-weight:400">(Responsabilidad social empresarial)</span><span class="tag">Consigna 3c</span></p>
+      <p class="def">Sistema de gestión <b>voluntario</b> donde la empresa asume el impacto de sus actos y destina recursos para el bienestar de la sociedad.</p>
+      <p class="h-sub">Dimensiones del RSE</p>
+      <ul>
+        <li><b>Interno:</b> ayudar a sus trabajadores.</li>
+        <li><b>Externo:</b> ayuda a los consumidores, a la sociedad y el entorno.</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Mkt social para empresas</p>
+        <p class="def">Desarrolla su plan de MKT y a la vez realizan una campaña beneficiosa para la sociedad, pero ligado a su actividad comercial.</p>
+      </div>
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Mkt social para ONG</p>
+        <p class="def">Lo mismo que el empresarial, pero no se centra en conseguir ventas, busca benefactores.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Mkt filantrópico</p>
+      <p class="def">Campañas sociales realizadas con <b>fondos de terceros</b>.</p>
+      <p class="h-sub">Formas de recaudar</p>
+      <ol>
+        <li><b>Promoción de causa social:</b> 100 % de lo recaudado se destina a una obra de caridad (especies o dinero).</li>
+        <li><b>Mkt con causa:</b> parte de las ventas se destinan a la obra de caridad y la otra parte a las utilidades de la empresa.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Consumerismo</p>
+      <p class="def">Movimiento social para garantizar los derechos básicos del consumidor.</p>
+      <p class="h-sub">Derechos básicos</p>
+      <ul>
+        <li><b>a) Derecho a la seguridad:</b> que no perjudique al consumidor.</li>
+        <li><b>b) Derecho a la información:</b> dar toda la info necesaria del producto.</li>
+        <li><b>c) Derecho a elegir:</b> que no haya monopolio.</li>
+        <li><b>d) Derecho a ser escuchado:</b> posibilidad de réplica respecto al producto.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== 09 · MKT DE SALUD ===================== -->
+  <section class="unit reveal" id="p9" style="--accent:var(--u4)">
+    <div class="unit-head"><div class="unit-num">09</div>
+      <div class="unit-titles"><p class="u-kicker">Unidad 4 · Hojas 9–11</p><h2>Marketing de servicios y tendencias · Mkt de salud</h2></div></div>
+    <span class="unit-weight">Lo nombró en la tutoría del 15/09: «Unidad 1, 2 y 3, y Marketing de Salud, la Unidad 4» · en el TEMA 2 de la mañana no lo tomó</span>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Servicio</p>
+        <p class="def">Conjunto de cualidades o características que satisfacen una necesidad que se distingue por ser intangible.</p>
+      </div>
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Tipo de servicios</p>
+        <ol>
+          <li>Mkt de salud</li>
+          <li>Mkt turístico</li>
+          <li>Mkt de servicios profesionales</li>
+          <li>Mkt financiero</li>
+          <li>Mkt deportivo</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Mkt de salud</p>
+      <p class="def">Lo mismo que Mkt social. Incentivar una conducta saludable para las personas y sociedad.</p>
+      <ul>
+        <li>Proporciona los medios para garantizar la salud y el hábito de hacerlo.</li>
+        <li>También puede influir en la calidad de vida de la sociedad en general (necesidades básicas).</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Posicionamiento del Mkt de salud</p>
+      <ul>
+        <li>Brinda a los ciudadanos las herramientas para cuidar su salud</li>
+        <li>Posicionar a la salud como valor social</li>
+        <li>Impactar en el comportamiento de las personas</li>
+        <li><b>Mercado meta:</b> grupo social (sociedad en general)</li>
+        <li><b>Comprensión cultural:</b> depende el país es cómo valoran la salud</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Valor</p>
+        <p class="def">Sentimiento positivo hacia el objeto. La sociedad o grupo social elige a qué darle valor.</p>
+        <p class="h-sub">Generación de valor</p>
+        <p class="def">Propuesta de valor.</p>
+      </div>
+      <div class="card">
+        <p class="h-main"><span class="dot"></span>Estrategias de Mkt de salud</p>
+        <ul>
+          <li>Segmentación</li>
+          <li>Mercado meta</li>
+          <li>Posicionamiento</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Mkt Mix</p>
+      <ul>
+        <li><b>Producto</b>
+          <ul class="sub">
+            <li><b>Comportamiento deseado:</b> bien definido lo que le pedimos al cliente</li>
+            <li>Propuesta de valor</li>
+          </ul>
+        </li>
+        <li><b>Precio</b>
+          <ul class="sub">
+            <li>Costo del proceso de adopción (social, emocional y físico) del hábito propuesto</li>
+          </ul>
+        </li>
+        <li><b>Distribución:</b> lugar donde se va a realizar el comportamiento (clínicas, …)</li>
+        <li><b>Promoción</b>
+          <ul class="sub">
+            <li>Publicidad</li>
+            <li>RRPP</li>
+            <li>Promoción de ventas</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p class="h-main"><span class="dot"></span>Publicidad Social</p>
+      <p class="def">Intenta ayudar a la comunidad. Es paga, intencional e interesada. Busca persuadir a una conducta en la sociedad.</p>
+      <p class="h-sub">Funciones</p>
+      <ul>
+        <li>Denuncia la existencia de problemas</li>
+        <li>Sensibilizar a la población</li>
+      </ul>
+    </div>
+  </section>
+
+  </div><!-- /view-resumen -->
+
+  <!-- ===================== QUIZ ===================== -->
+  <section id="view-quiz" class="modeview hidden">
+    <div class="qwrap">
+      <div class="qtop"><span>Pregunta <b id="q-idx">1</b> / <span id="q-total">0</span></span><span>Aciertos <b id="q-score">0</b></span><button class="btn ghost" id="q-restart">Reiniciar</button></div>
+      <div class="qcard" id="quiz-card"></div>
+    </div>
+  </section>
+
+  <!-- ===================== ESCRIBIR ===================== -->
+  <section id="view-escribir" class="modeview hidden">
+    <div class="qwrap">
+      <div class="qtop"><span>Pregunta <b id="e-idx">1</b> / <span id="e-total">0</span></span><span>De memoria <b id="e-score">0</b></span><button class="btn ghost" id="e-restart">Reiniciar</button></div>
+      <div class="qcard" id="esc-card"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Solo lo del parcial · Gestión de Marketing</p>
+  </footer>
+
+</div>
+
+<script>
+  /* ============ AUTO-ACTUALIZADOR ============ */
+  /* Bump BUILD en cada deploy: las pestañas abiertas detectan la versión nueva y recargan solas. */
+  const BUILD='2026-09-22-1';
+  async function checkUpdate(){
+    try{
+      if(location.protocol==='file:')return;
+      const r=await fetch(location.pathname+'?_cb='+Math.floor(Date.now()/30000),{cache:'no-store'});
+      if(!r.ok)return;
+      const t=await r.text();
+      const m=t.match(/const BUILD='([^']+)'/);
+      if(!m||m[1]===BUILD)return;
+      const num=v=>v.split('-').map(Number);
+      const newer=(a,b)=>{const x=num(a),y=num(b);for(let i=0;i<Math.max(x.length,y.length);i++){if((x[i]||0)!==(y[i]||0))return (x[i]||0)>(y[i]||0);}return false;};
+      let done='';try{done=sessionStorage.getItem('reloadedFor')||'';}catch(e){}
+      if(newer(m[1],BUILD)&&done!==m[1]){try{sessionStorage.setItem('reloadedFor',m[1]);}catch(e){}location.reload();}
+    }catch(e){}
+  }
+  setInterval(checkUpdate,60000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate();});
+
+  /* Aparición de secciones: umbral 0 + respaldo a 1,5 s. */
+  const showAll=()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px 120px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    setTimeout(showAll,1500);
+  }else{showAll();}
+  const chips={};document.querySelectorAll('.chip').forEach(c=>{const h=c.getAttribute('href');if(h&&h.startsWith('#'))chips[h.slice(1)]=c;});
+  const spy=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
+    Object.values(chips).forEach(c=>c.style.cssText='');
+    const c=chips[e.target.id];if(c){c.style.background='var(--ink)';c.style.color='var(--paper)';}
+  }})},{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section.unit').forEach(s=>spy.observe(s));
+
+    /* ============ BANCO DE PREGUNTAS (las respuestas son las palabras del cuaderno) ============ */
+  const EC=[
+   {u:'1 · Marketing político',c:'var(--u1)',items:[
+     {q:'¿Qué es el Marketing Político?',a:'Principios de marketing aplicados a la política. Estrategias y tácticas aplicadas a una campaña política y divulgación institucional.'},
+     {q:'Niveles estratégicos del Mkt político: ¿cuáles son y en qué orden?',a:'1) Estrategia Política · 2) Estrategia Comunicacional · 3) Estrategia Publicitaria'},
+     {q:'Estrategia Política (como nivel estratégico)',a:'Busca decidir la propuesta política que se le dará al electorado, según la info recolectada por el diagnóstico estratégico.'},
+     {q:'Estrategia Comunicacional (como nivel estratégico)',a:'Diseñada la estrategia, se debe elaborar el discurso según el diseño.'},
+     {q:'Estrategia Publicitaria (como nivel estratégico)',a:'Transmitir emocionalmente bien el mensaje y diseñado y elaborado el discurso. Todo atractivamente.'}
+   ]},
+   {u:'2 · Estrategia política',c:'var(--u1)',items:[
+     {q:'¿Qué es la estrategia política?',a:'Decisiones tomadas según la ideología.'},
+     {q:'¿Quiénes son los participantes en las decisiones de la estrategia política?',a:'El candidato, asesores más cercanos y los 4 de primera línea de la fuerza política.'},
+     {q:'Enumerá las cinco herramientas técnicas de la estrategia política',a:'Diagnóstico Estratégico · Mapa político · Red motivacional al voto · Posicionamiento · Análisis Internacional'},
+     {q:'¿Qué es el Diagnóstico Estratégico?',a:'Problemas principales de la sociedad y cómo solucionarlos.'},
+     {q:'¿Qué es el Mapa político? (como herramienta)',a:'Conjunto de actores (candidatos, electorado, fuerzas políticas, alianzas potenciales y medios de comunicación).'},
+     {q:'¿Qué es el Mapa Político? (definición ampliada)',a:'Escenario socio político y económico. Delimitamos el terreno político según ciertos criterios.'},
+     {q:'¿Cuáles son los criterios del mapa político?',a:'Criterio ideológico · Criterio partidario · Criterio temático · Criterio geográfico'},
+     {q:'¿Qué es la Red motivacional al voto? (como herramienta)',a:'Motivaciones del elector por las que votaría a un candidato.'},
+     {q:'¿Qué es la Red Motivacional al voto? (definición ampliada)',a:'Razones por las que el elector elije al candidato A por sobre el candidato B.'},
+     {q:'Identificación de razones de la red motivacional al voto',a:'Partidaria · De clase · Identificación con la idea del cambio · Identificación con la idea de continuidad · Identificación con el candidato · Con la propuesta · Con el discurso · Con la imagen'},
+     {q:'¿Qué es el Posicionamiento como herramienta de la estrategia política?',a:'Forma de posicionar al candidato frente a las elecciones.'},
+     {q:'¿Qué es la Estrategia de posicionamiento?',a:'Posicionar al candidato en el espacio electoral que pretende utilizar en el mapa político.'},
+     {q:'¿De qué 2 cosas depende una estrategia de posicionamiento exitosa?',a:'1) Estar constituida en base a la selección de pocas prioridades o posiciones. 2) Debe permitir una presentación simple y directa.'},
+     {q:'¿Qué es el Análisis Internacional? (como herramienta)',a:'Estudiar contexto global, tendencias y modelos extranjeros para optimizar las campañas.'},
+     {q:'¿Qué comprende el Análisis Internacional?',a:'Monitorización externa del candidato. Interés de las reacciones de los centros de poder por los candidatos.'}
+   ]},
+   {u:'3 · Temperamento y humor',c:'var(--u1)',items:[
+     {q:'¿Qué es el Temperamento Político?',a:'Grado de interés por la política (largo plazo).'},
+     {q:'¿Qué es el Humor Político?',a:'Cómo percibe o nota la opinión pública la situación del país, grado de optimismo o pesimismo y grado de apoyo o descontento por el gobierno (corto plazo).'},
+     {q:'¿Cuál es de largo plazo y cuál de corto plazo: temperamento o humor político?',a:'Temperamento político: largo plazo. Humor político: corto plazo.'},
+     {q:'¿Qué actitudes comprende el temperamento político?',a:'Actitud positiva o negativa al cambio · Actitudes respecto a concepto de izq. o der. · Actitud hacia el sistema económico · Actitud hacia el político o armado · Actitud sobre problemas actuales · Opinión personal respecto a la gestión del político respecto a un problema'},
+     {q:'¿Cuándo es volátil la actitud positiva o negativa al cambio?',a:'Volátil en períodos de crisis económica.'},
+     {q:'Actitudes de los electores respecto al político a corto plazo',a:'Opiniones pasajeras por polémicas del momento.'},
+     {q:'Actitudes de los electores respecto al político a largo plazo',a:'El electorado ya tiene una opinión generada que no puede cambiar.'}
+   ]},
+   {u:'4 · Marais y blancos',c:'var(--u1)',items:[
+     {q:'¿Qué es El Marais?',a:'Mantenerse ignorante a las novedades políticas. No solo es una actitud, sino que también es un segmento.'},
+     {q:'¿Qué son los Electores flotantes o «Marais»?',a:'Alto grado de influenciabilidad.'},
+     {q:'Características de los electores flotantes o marais',a:'Personas que cambian fácilmente de candidato o partido de preferencia · Se centran en el humor político · Segmento más rentable de abarcar · Representa aprox. el 20 % del electorado (mayormente jóvenes y viejos)'},
+     {q:'¿Qué porcentaje del electorado representa el marais y de qué edades?',a:'Representa aprox. el 20 % del electorado (mayormente jóvenes y viejos).'},
+     {q:'¿Qué son los Blancos naturales?',a:'Predisposición natural a la ideología. Núcleo duro.'},
+     {q:'Características de los blancos naturales',a:'Alta receptibilidad al mensaje · Cumplir con lo prometido · Aplicación de recursos a este segmento a inicios de campaña · Cuidar el no defraudar a este segmento al dirigirnos a otro'},
+     {q:'¿Qué son los Líderes de opinión?',a:'Personas con alta influencia en el voto sin restricción de opinión respecto a lo que dice.'},
+     {q:'¿Qué son los Electores críticos?',a:'Votantes muy informados, analíticos y con opiniones políticas. Indecisos. Convencibles con argumentos.'},
+     {q:'¿Cuáles son los pasos a seguir para elaborar la estrategia?',a:'1) Objetivos buscados y metas. 2) Elegir los segmentos del electorado.'},
+     {q:'¿Cuáles son los objetivos buscados y metas?',a:'Difundir ideas, obtener caudal específico de votos y ganar la elección.'},
+     {q:'Al elegir los segmentos del electorado, ¿qué buscamos?',a:'Buscamos maximizar recursos escasos.'},
+     {q:'¿Qué es la Plataforma electoral?',a:'Documento con los planes y propuestas para la campaña. Sirve de guía para los candidatos que salieron electos y orientar su trabajo hacia el cargo.'}
+   ]},
+   {u:'5 · Comunicacional y publicitaria',c:'var(--u1)',items:[
+     {q:'¿Qué es la Estrategia Comunicacional?',a:'Elaborar el discurso político.'},
+     {q:'¿Cuáles son los tipos de discurso?',a:'Refuerzo · Polémico · Persuasión'},
+     {q:'Tipo de discurso: Refuerzo',a:'Destinado al votante que ya es partidario, simpatizante o militante.'},
+     {q:'Tipo de discurso: Polémico',a:'Descalificar al adversario y confrontarlo directamente.'},
+     {q:'Tipo de discurso: Persuasión',a:'Persuadir con argumentos.'},
+     {q:'¿Qué es el Planeamiento de medios?',a:'Medios que se utilizarán para transmitir el mensaje político. Además de la correcta combinación de redes de comunicación.'},
+     {q:'¿Qué es la Opinión Pública?',a:'Creencias percibidas y compartidas por la comunidad y que es de interés general por todos estos.'},
+     {q:'¿Cómo conocer al electorado?',a:'1) Análisis estadístico: información cuantitativa (barato, simple y directo). 2) Opinión pública: información cualitativa.'},
+     {q:'Encuestas cualitativas: ¿qué las caracteriza?',a:'Entrevistas · Muestras pequeñas: grupos pequeños de personas · Detectar ideas: se pregunta por opiniones y percepción respecto al candidato'},
+     {q:'Encuestas cuantitativas: ¿qué las caracteriza?',a:'Muestra grande: tan grande como para ser representativa de toda la población. Revela: opiniones y comportamientos similares a los de toda la población.'},
+     {q:'¿Qué es la Estrategia Publicitaria?',a:'Transmisión emocional y atractiva del mensaje diseñado y elaborado por la estrategia comunicacional. Busca convertir todo lo anterior en imagen.'},
+     {q:'¿Cuáles son las funciones de la publicidad?',a:'Función comunicativa y función narrativa.'},
+     {q:'Función comunicativa de la publicidad',a:'Busca transmitir textualmente el mensaje.'},
+     {q:'Función narrativa de la publicidad',a:'Busca generar emociones en el oyente y en el electorado.'},
+     {q:'¿Qué es el Posicionamiento (en la estrategia publicitaria)?',a:'Percepciones de la propuesta y de cómo realmente actúa el candidato. El elector atribuye conductas y actitudes al candidato, pueden ser reales o no.'},
+     {q:'¿Qué es la Segmentación?',a:'Identificar divisiones de electores con características homogéneas.'}
+   ]},
+   {u:'6 · Place Marketing',c:'var(--u2)',items:[
+     {q:'En marketing de países y ciudades, ¿a qué se equipara la ciudad?',a:'CIUDAD = INSTITUCIÓN'},
+     {q:'¿Qué es el Marketing Place (o Marketing Territorial)?',a:'Tiene como objetivo adaptar la oferta a la demanda a través de estrategias, ejecutando estas considerando la identidad de la ciudad para diferenciarla del resto.'},
+     {q:'¿Qué es el Mkt de ciudad?',a:'Aplicación de las 4P y cómo vender una ciudad.'},
+     {q:'¿Qué es la Demanda en marketing de ciudades?',a:'Colectivo al que queremos atraer (instituciones, inversores, colectivos).'},
+     {q:'¿Qué es la Marca país?',a:'Forma de diferenciarse del país con el resto y representar los valores del mismo y posicionarse con esta marca.'},
+     {q:'Comparativa emp./ciudad: propiedad',a:'Empresas: accionistas, empresariado. Ciudad: ciudadanos e instituciones.'},
+     {q:'Comparativa emp./ciudad: alta dirección',a:'Empresas: consejo de administración. Ciudad: ayuntamiento, municipalidad, alcaldía.'},
+     {q:'Comparativa emp./ciudad: productos',a:'Empresas: manufactura o servicio. Ciudad: serv. públicos, atractivos diversos.'},
+     {q:'Comparativa emp./ciudad: clientes',a:'Empresas: consumidores. Ciudad: ciudadanos, inversores y visitantes.'},
+     {q:'Comparativa emp./ciudad: competidores y cooperantes',a:'Empresas: otras empresas. Ciudad: otras ciudades.'},
+     {q:'Plan estratégico de Mkt en ciudades según Laura Meza Arango',a:'Análisis situacional · Fijar objetivos · Plantear estrategia: segmentación y posicionamiento · Marketing operativo · Plan de acción · Implementación y control'},
+     {q:'Plan estratégico de Mkt en ciudades según Martínez y Cervante Bianca',a:'1) Desarrollo físico / modelo económico. 2) Estrategia de competencia y colaboración. 3) Fase de Marketing.'},
+     {q:'Fase 1: Desarrollo físico / modelo económico',a:'Infraestructura, beneficios tangibles. Desarrollar las actividades estratégicas que generen riqueza.'},
+     {q:'Fase 2: Estrategia de competencia y colaboración',a:'Robarse los colectivos de otras ciudades y protocolos de colaboración con otras ciudades.'},
+     {q:'Fase 3: Fase de Marketing',a:'Toda la fase de comunicación.'},
+     {q:'Redes de ciudades: ¿qué incluye la competencia?',a:'Atraer inversores · Instituciones y empresas · Eventos deportivos · Exposiciones · Actividades económicas y culturales'},
+     {q:'Redes de ciudades: ¿qué son las relaciones horizontales y verticales?',a:'Relaciones horizontales: entre ciudades. Relaciones verticales: con instituciones privadas.'},
+     {q:'¿Qué incluye el plan estratégico de comunicación de las redes de ciudades?',a:'Publicidad · Promoción · Ferias de turismo o comerciales · RRPP · Famosos: «Embajadores de buena voluntad» · Eventos que dan notoriedad internacional'}
+   ]},
+   {u:'7 · Place Branding',c:'var(--u2)',items:[
+     {q:'¿Qué es el PLACE BRANDING?',a:'Estudia cómo posicionar una marca. Administrar todos los elementos vinculados a un símbolo y nombre comercial.'},
+     {q:'Enumerá los cinco principios del place branding',a:'1) Singularidad 2) Autenticidad 3) Memorable 4) Cocreación 5) Place Making'},
+     {q:'Principio de place branding: Singularidad',a:'Qué la diferencia, qué valores tiene y qué promete la marca.'},
+     {q:'Principio de place branding: Autenticidad',a:'La imagen debe ir acorde a su realidad y a sus valores auténticos.'},
+     {q:'Principio de place branding: Memorable',a:'Incentivar a vivir o invertir con experiencias que recuerden y lleven en el corazón.'},
+     {q:'Principio de place branding: Cocreación',a:'Colaboración constante entre emp. públicas y privadas para hacer realidad la identidad.'},
+     {q:'Principio de place branding: Place Making',a:'Comunicación integrada a todos los principios.'},
+     {q:'¿Qué es el Genius Loci?',a:'Es el cómo una obra se integra al espacio físico del lugar donde se ubica y cómo el branding place se adecua a este.'}
+   ]},
+   {u:'8 · Mkt social y RSE',c:'var(--u3)',items:[
+     {q:'¿Qué es el Mkt social?',a:'Planificación de mkt que promueve un cambio de comportamiento voluntario socialmente favorable a través de un producto social.'},
+     {q:'¿Qué es el Producto social?',a:'Propuesta de cambio que presenta la empresa que realiza la campaña de Mkt social.'},
+     {q:'¿Cuáles son las partes del producto social?',a:'1) Idea 2) Concepto 3) Imagen'},
+     {q:'Parte del producto social: Idea',a:'Problema a solucionar.'},
+     {q:'Parte del producto social: Concepto',a:'Llamada a la acción.'},
+     {q:'Parte del producto social: Imagen',a:'Cómo lo comunicaremos con las 4P.'},
+     {q:'¿Qué es el Mkt socialmente responsable?',a:'(Exclusivo para empresas) Plan de Mkt que no perjudique al consumidor.'},
+     {q:'¿Qué es la RSE (Responsabilidad social empresarial)?',a:'Sistema de gestión voluntario donde la empresa asume el impacto de sus actos y destina recursos para el bienestar de la sociedad.'},
+     {q:'¿Cuáles son las dimensiones del RSE?',a:'Interno: ayudar a sus trabajadores. Externo: ayuda a los consumidores, a la sociedad y el entorno.'},
+     {q:'¿Qué es el Mkt social para empresas?',a:'Desarrolla su plan de MKT y a la vez realizan una campaña beneficiosa para la sociedad, pero ligado a su actividad comercial.'},
+     {q:'¿Qué es el Mkt social para ONG?',a:'Lo mismo que el empresarial, pero no se centra en conseguir ventas, busca benefactores.'},
+     {q:'¿Qué es el Mkt filantrópico?',a:'Campañas sociales realizadas con fondos de terceros.'},
+     {q:'¿Cuáles son las formas de recaudar del mkt filantrópico?',a:'1) Promoción de causa social 2) Mkt con causa'},
+     {q:'¿Qué es la Promoción de causa social?',a:'100 % de lo recaudado se destina a una obra de caridad (especies o dinero).'},
+     {q:'¿Qué es el Mkt con causa?',a:'Parte de las ventas se destinan a la obra de caridad y la otra parte a las utilidades de la empresa.'},
+     {q:'¿Qué es el Consumerismo?',a:'Movimiento social para garantizar los derechos básicos del consumidor.'},
+     {q:'Enumerá los derechos básicos del consumidor',a:'a) Derecho a la seguridad b) Derecho a la información c) Derecho a elegir d) Derecho a ser escuchado'},
+     {q:'Derecho a la seguridad',a:'Que no perjudique al consumidor.'},
+     {q:'Derecho a la información',a:'Dar toda la info necesaria del producto.'},
+     {q:'Derecho a elegir',a:'Que no haya monopolio.'},
+     {q:'Derecho a ser escuchado',a:'Posibilidad de réplica respecto al producto.'}
+   ]},
+   {u:'9 · Mkt de salud',c:'var(--u4)',items:[
+     {q:'¿Qué es un Servicio?',a:'Conjunto de cualidades o características que satisfacen una necesidad que se distingue por ser intangible.'},
+     {q:'¿Cuáles son los tipos de servicios?',a:'1) Mkt de salud 2) Mkt turístico 3) Mkt de servicios profesionales 4) Mkt financiero 5) Mkt deportivo'},
+     {q:'¿Qué es el Mkt de salud?',a:'Lo mismo que Mkt social. Incentivar una conducta saludable para las personas y sociedad.'},
+     {q:'¿Qué proporciona el Mkt de salud?',a:'Proporciona los medios para garantizar la salud y el hábito de hacerlo. También puede influir en la calidad de vida de la sociedad en general (necesidades básicas).'},
+     {q:'Posicionamiento del Mkt de salud',a:'Brinda a los ciudadanos las herramientas para cuidar su salud · Posicionar a la salud como valor social · Impactar en el comportamiento de las personas · Mercado meta: grupo social (sociedad en general) · Comprensión cultural: depende el país es cómo valoran la salud'},
+     {q:'¿Qué es el Valor?',a:'Sentimiento positivo hacia el objeto. La sociedad o grupo social elige a qué darle valor.'},
+     {q:'¿Qué es la Generación de valor?',a:'Propuesta de valor.'},
+     {q:'¿Cuáles son las estrategias de Mkt de salud?',a:'Segmentación · Mercado meta · Posicionamiento'},
+     {q:'Mkt Mix de salud: Producto',a:'Comportamiento deseado: bien definido lo que le pedimos al cliente. Propuesta de valor.'},
+     {q:'Mkt Mix de salud: Precio',a:'Costo del proceso de adopción (social, emocional y físico) del hábito propuesto.'},
+     {q:'Mkt Mix de salud: Distribución',a:'Lugar donde se va a realizar el comportamiento (clínicas, …).'},
+     {q:'Mkt Mix de salud: Promoción',a:'Publicidad · RRPP · Promoción de ventas'},
+     {q:'¿Qué es la Publicidad Social?',a:'Intenta ayudar a la comunidad. Es paga, intencional e interesada. Busca persuadir a una conducta en la sociedad.'},
+     {q:'¿Cuáles son las funciones de la publicidad social?',a:'Denuncia la existencia de problemas. Sensibilizar a la población.'}
+   ]}
+  ];
+
+  const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+  const flat=EC.flatMap(t=>t.items.map(it=>({...it,u:t.u,c:t.c})));
+
+  /* ---- QUIZ ---- */
+  let quiz=[],qi=0,qscore=0;
+  function buildQuiz(){
+    quiz=shuffle(EC.flatMap(t=>t.items.map(it=>{
+      let pool=t.items.filter(x=>x.a!==it.a).map(x=>x.a);
+      if(pool.length<3)pool=pool.concat(shuffle(flat.filter(x=>x.u!==t.u).map(x=>x.a)));
+      return {u:t.u,c:t.c,q:it.q,correct:it.a,options:shuffle([it.a,...shuffle(pool).slice(0,3)])};
+    })));
+    qi=0;qscore=0;document.getElementById('q-total').textContent=quiz.length;renderQ();
+  }
+  function renderQ(){
+    document.getElementById('q-idx').textContent=qi+1;
+    document.getElementById('q-score').textContent=qscore;
+    const it=quiz[qi],card=document.getElementById('quiz-card');
+    card.style.setProperty('--accent',it.c);
+    card.innerHTML='<div class="qgroup">'+it.u+'</div><div class="qq">'+it.q+'</div><div id="opts">'+it.options.map((o,i)=>'<button class="opt" data-i="'+i+'">'+o+'</button>').join('')+'</div><div class="fb" id="fb"></div><div class="qactions"><button class="btn hidden" id="q-next">Siguiente →</button></div>';
+    const opts=card.querySelectorAll('.opt');
+    opts.forEach(b=>b.addEventListener('click',()=>{
+      const ok=it.options[+b.dataset.i]===it.correct;
+      opts.forEach(x=>{x.disabled=true;if(it.options[+x.dataset.i]===it.correct){x.classList.add('correct');x.innerHTML+=' <span class="mk">✓</span>';}});
+      const fb=document.getElementById('fb');
+      if(ok){qscore++;fb.textContent='¡Correcto!';fb.className='fb ok';}
+      else{b.classList.add('wrong');b.innerHTML+=' <span class="mk">✕</span>';fb.textContent='La respuesta correcta es la marcada en verde.';fb.className='fb no';}
+      document.getElementById('q-score').textContent=qscore;
+      const n=document.getElementById('q-next');n.classList.remove('hidden');
+      n.textContent=qi+1<quiz.length?'Siguiente →':'Ver resultado';
+      n.onclick=()=>{qi+1<quiz.length?(qi++,renderQ()):resultQ();};
+    }));
+  }
+  function resultQ(){
+    const pct=Math.round(qscore/quiz.length*100),card=document.getElementById('quiz-card');
+    card.style.setProperty('--accent','var(--brand)');
+    card.innerHTML='<div class="qgroup">Resultado</div><div class="qq">'+qscore+'/'+quiz.length+' · '+pct+'%</div><p style="color:var(--ink-soft);margin-bottom:20px">'+(pct>=80?'Te lo sabés.':pct>=50?'Vas bien; repasá las que fallaste.':'Volvé al Resumen y reintentá.')+'</p><div class="qactions"><button class="btn" id="q-again">Reintentar</button></div>';
+    document.getElementById('q-idx').textContent=quiz.length;
+    document.getElementById('q-again').onclick=buildQuiz;
+  }
+
+  /* ---- ESCRIBIR ---- */
+  let esc=[],ei=0,escore=0;
+  function buildEsc(){esc=shuffle(flat);ei=0;escore=0;document.getElementById('e-total').textContent=esc.length;renderE();}
+  function renderE(){
+    document.getElementById('e-idx').textContent=ei+1;
+    document.getElementById('e-score').textContent=escore;
+    const it=esc[ei],card=document.getElementById('esc-card');
+    card.style.setProperty('--accent',it.c);
+    card.innerHTML='<div class="qgroup">'+it.u+'</div><div class="qq">'+it.q+'</div><textarea id="e-input" class="esc-input" placeholder="Escribí tu respuesta de memoria…  (Ctrl+Enter para revelar)" spellcheck="false"></textarea><div class="qactions"><button class="btn" id="e-reveal">Revelar respuesta</button></div><div id="e-answer" class="esc-answer hidden"></div>';
+    const ta=document.getElementById('e-input');ta.focus();
+    function reveal(){
+      if(ta.disabled)return;
+      const yours=(ta.value.trim()||'(no escribiste nada)').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+      const ans=document.getElementById('e-answer');
+      ans.innerHTML='<div class="esc-yours"><span class="esc-lbl">Lo que escribiste</span><p>'+yours+'</p></div><div class="esc-ok"><span class="esc-lbl">Lo que dice el cuaderno</span><p class="ans">'+it.a+'</p></div><div class="esc-rate">¿Te salió de memoria?<button class="rate" data-r="1">Sí</button><button class="rate" data-r="m">Más o menos</button><button class="rate" data-r="0">No</button></div>';
+      ans.classList.remove('hidden');
+      document.getElementById('e-reveal').disabled=true;ta.disabled=true;
+      ans.querySelectorAll('.rate').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.r==='1')escore++;ei+1<esc.length?(ei++,renderE()):resultE();}));
+      ans.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+    ta.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')reveal();});
+    document.getElementById('e-reveal').addEventListener('click',reveal);
+  }
+  function resultE(){
+    document.getElementById('e-idx').textContent=esc.length;
+    document.getElementById('e-score').textContent=escore;
+    const card=document.getElementById('esc-card');card.style.setProperty('--accent','var(--brand)');
+    card.innerHTML='<div class="qgroup">Resultado</div><div class="qq">'+escore+'/'+esc.length+' de memoria</div><div class="qactions"><button class="btn" id="e-again">Reintentar</button></div>';
+    document.getElementById('e-again').onclick=buildEsc;
+  }
+
+  /* ---- NAVEGACIÓN DE MODOS ---- */
+  const views={resumen:document.getElementById('view-resumen'),quiz:document.getElementById('view-quiz'),escribir:document.getElementById('view-escribir')};
+  document.getElementById('modes').addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    document.querySelectorAll('#modes button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const m=b.dataset.mode;
+    Object.entries(views).forEach(([k,el])=>el.classList.toggle('hidden',k!==m));
+    document.getElementById('navchips').classList.toggle('hidden',m!=='resumen');
+    if(m==='quiz'&&!quiz.length)buildQuiz();
+    if(m==='escribir'&&!esc.length)buildEsc();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  document.getElementById('q-restart').addEventListener('click',buildQuiz);
+  document.getElementById('e-restart').addEventListener('click',buildEsc);
+</script>
+</body>
+</html>
